@@ -8,16 +8,20 @@
                  <robot-hand  hand-model="currentStep.hand" scale="1" editable="true"></robot-hand>
                 </li>
 
-            <button ng-click="addHandToPlayList(currentStep)">Sauvegarde</button>
+            <button ng-click="addHandToPlayList(currentStep.hand)">Sauvegarde</button>
             <button ng-click="deleteAll()">Efface playlist</button>
+          <br>
+            <button ng-click="addStepToPlayList()">Ajoute playlist</button>
+            <button ng-click="playPlayList()">Joue playlist</button>
                 </div>
 
 
             <div class="col-m-6 jumbotron" style="background:chartreuse">
-                <li ng-repeat = 'step in application.playlist'>
-                <p>{{step}}</p>
+
+                    <div style="float:left" ng-repeat="step in application.playlist" >
+                    <robot-hand hand-model="step.hand" scale="0.2" editable="false"></robot-hand>
+                    </div>
                 </li>
-            </div>
 
     </ul>
     </div>

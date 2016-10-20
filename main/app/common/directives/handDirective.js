@@ -29,13 +29,13 @@ angular.module('ui.hand', [])
             compile: function (element, attributes) {
                 return {
                     pre: function (scope, element, attributes, controller, transcludeFn) {
-                        if (scope.editable) {
+
                             scope.major = new Finger(element[0].getElementsByClassName("major")[0], scope, scope.handModel.major);
                             scope.index = new Finger(element[0].getElementsByClassName("index")[0], scope, scope.handModel.index);
                             scope.auricular = new Finger(element[0].getElementsByClassName("auricular")[0], scope, scope.handModel.auricular);
                             scope.thumb = new Finger(element[0].getElementsByClassName("thumb")[0], scope, scope.handModel.thumb);
                             scope.ringfinger = new Finger(element[0].getElementsByClassName("ringfinger")[0], scope, scope.handModel.ringfinger);
-                        }
+
                     },
                     post: function (scope, element, attributes, controller, transcludeFn) {
 
@@ -55,29 +55,32 @@ function Finger(element, scope, rotation) {
     this.rotation = rotation;
     var self = this;
     var domFingerElement = element;
-    domFingerElement.addEventListener('mousewheel',
-        function (event, majorfinger) {
 
-            var fingerRotation = domFingerElement.getElementsByClassName('rotation')[0];
-            if (event.deltaY < 0 && self.rotation <= 170) {
-                self.rotation+=10;
-            }
-            if (event.deltaY > 0 && self.rotation >= 10) {
-                self.rotation-=10;
-            }
+    if (scope.editable) {
+        domFingerElement.addEventListener('mousewheel',
+            function (event, majorfinger) {
 
-            var height = (self.rotation * 100) / 180;
-            fingerRotation.style.height = height + '%';
+                var fingerRotation = domFingerElement.getElementsByClassName('rotation')[0];
+                if (event.deltaY < 0 && self.rotation <= 170) {
+                    self.rotation += 10;
+                }
+                if (event.deltaY > 0 && self.rotation >= 10) {
+                    self.rotation -= 10;
+                }
 
-            scope.handModel.thumb=scope.thumb.rotation;
-            scope.handModel.index=scope.index.rotation;
-            scope.handModel.major=scope.major.rotation;
-            scope.handModel.ringfinger=scope.ringfinger.rotation;
-            scope.handModel.auricular=scope.auricular.rotation;
+                var height = (self.rotation * 100) / 180;
+                fingerRotation.style.height = height + '%';
+
+                scope.handModel.thumb = scope.thumb.rotation;
+                scope.handModel.index = scope.index.rotation;
+                scope.handModel.major = scope.major.rotation;
+                scope.handModel.ringfinger = scope.ringfinger.rotation;
+                scope.handModel.auricular = scope.auricular.rotation;
 
 
-            scope.$apply();
-            event.preventDefault();
-        },
-        false);
+                scope.$apply();
+                event.preventDefault();
+            },
+            false);
+    }
 }
