@@ -1,0 +1,24 @@
+<div class="container-fluid">
+<h1>HAND VIEW 1</h1>
+
+    <div class="row jumbotron">
+      <ul>
+                <li>
+                 <div class="col-md-6 jumbotron" style="background:mediumpurple">
+                 <robot-hand  hand-model="currentStep.hand" scale="1" editable="true"></robot-hand>
+                </li>
+
+            <button ng-click="addHandToPlayList(currentStep)">Sauvegarde</button>
+            <button ng-click="deleteAll()">Efface playlist</button>
+                </div>
+
+
+            <div class="col-m-6 jumbotron" style="background:chartreuse">
+                <li ng-repeat = 'step in application.playlist'>
+                <p>{{step}}</p>
+                </li>
+            </div>
+
+    </ul>
+    </div>
+</div>
