@@ -11,7 +11,7 @@
         "tests"
     ],
     "dependencies": {
-        "angular-common": "git://github.com/alizarion/angular-common.git#gh-pages",
+        "angular-common": "http://formationItesoft:*itesoft2006@github.com/alizarion/angular-common.git#gh-pages",
         "angular-translate-loader-partial": "2.8.0",
         "angular-translate-loader-static-files": "2.8.0",
         "components-font-awesome": "4.4.0",
